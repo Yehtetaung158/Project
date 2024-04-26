@@ -1,7 +1,14 @@
 import ReactDom from "react-dom/client";
-import "../src/index.css"
+import "../src/index.css";
 import App from "./App";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 ReactDom.createRoot(document.querySelector("#root")).render(
-    <App/>
-)
+  <BrowserRouter>
+  <Provider store={store}>
+    <App />
+  </Provider>
+  </BrowserRouter>
+);
