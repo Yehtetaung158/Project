@@ -2,15 +2,16 @@ import React, { useEffect } from 'react'
 import { useProfileQuery } from '../../../store/service/endpoint/auth.endpoint'
 import { useNavigate } from 'react-router-dom'
 
-const AuthGuard = ({check,token,children}) => {
+const AuthGuard = ({check,token,children,path="/"}) => {
     const nav=useNavigate()
     const {data,isError,isLoading} =useProfileQuery()
     useEffect(()=>{
-        console.log(data,isError,isLoading);
+        // console.log(data,isError,isLoading);
         if(check){
             localStorage.setItem("token",JSON.stringify(token))
         }else if(isError){
-            nav("/")
+            nav(path )
+            //  nav('/signup')
         }else if(data){
             nav("/home")
         }
